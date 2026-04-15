@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arap — Designer × CS Student</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <nav>
+    <div class="nav-logo-block">ARAP</div>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#playground">playground</a></li>
+      <li><a href="#stack">stack</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="about">
+
+    <div class="hero-cloud-bg" aria-hidden="true"></div>
+    <div class="hero-texture-overlay" aria-hidden="true"></div>
+    <div class="hero-fade-down" aria-hidden="true"></div>
+
+    <div class="hero-bg-letter" aria-hidden="true">A</div>
+
+    <div class="hero-content">
+
+      <div class="hero-loc reveal">
+        <div class="px-dot-sm"></div>
+        Bandung, Indonesia — CS × Design
+      </div>
+
+      <h1 class="hero-heading reveal reveal-d1">
+        Hey, i'm
+        <img src="head.png" alt="Arap" class="stylized-avatar" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Arap&backgroundColor=6200ff'" />
+        <span class="name-line">Arap.</span>
+      </h1>
+
+      <p class="hero-sub reveal reveal-d2">
+        <span class="sep"></span>
+        Designer who codes. Builder of pixels & logic.
+      </p>
+
+      <div class="hero-card reveal reveal-d3">
+        <p>
+          I’m a <span class="hl">Computer Science student (UPI '24)</span> who’s honestly just obsessed with <span class="hl">pixels</span>. 
+          Having a technical background means I don’t just design things that look <span class="hl">pretty</span>—I design things that actually <span class="hl">work</span>. 
+          I love <span class="hl">bridging the gap</span> between clean code and <span class="hl">human-centered design</span>, using AI to push my visuals further than they'd normally go. 
+          Consider it my little unfair advantage. 😏
+        </p>
+      </div>
+
+      <div class="hero-cta reveal reveal-d4">
+        <a href="#" class="btn-px btn-px-solid">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4v12m-6-6l6 6 6-6"/>
+            <path d="M4 20h16"/>
+          </svg>
+          Download CV
+        </a>
+        <a href="#projects" class="btn-px btn-px-ghost">View work →</a>
+      </div>
+
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <span>scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+
+  </header><div class="px-line"></div>
+
+  <section id="projects">
+    <div class="section-wrap">
+
+      <div class="section-header reveal">
+        <div class="section-num">01 /</div>
+        <div class="section-title-wrap">
+          <div class="title-row">
+            <h2 class="section-title">Selected <em>Work</em></h2>
+            
+              <div class="project-tabs">
+                <button class="tab-btn active">Digital Design</button>
+                <button class="tab-btn coming-soon">Motion & Video</button>
+              </div>
+
+              <div id="toast" class="toast">Coming soon! Still rendering the magic. ✨</div>
+          </div>
+          <p class="section-desc">Pixels with purpose</p>
+        </div>
+      </div>
+
+        <a href="#" class="project-item reveal" target="_blank" rel="noopener">
+          <div class="project-thumb" style="background:#EDE8FF;">
+            <div class="phone-wrapper">
+              <img src="assets/phone-case.png" class="phone-frame" alt="Phone Frame">
+              <img src="assets/projects/marifah-screen.png" class="phone-screen-img" alt="Ma'rifah UI">
+            </div>
+          </div>
+          <div class="project-meta">
+            <div>
+              <div class="project-tag-row">
+                <span class="ptag violet">MOBILE</span>
+                <span class="ptag">UI/UX</span>
+                <span class="ptag">EDUCATION</span>
+              </div>
+              <h3 class="project-name">Ma'rifah EduApp</h3>
+              <p class="project-desc">
+                A community-driven platform for Islamic learning and collaborative Q&A. 
+                Designed to simplify religious knowledge for the modern generation.
+              </p>
+            </div>
+            <span class="project-link-hint">View case study</span>
+          </div>
+        </a>
+
+        <a href="#" class="project-item flip reveal reveal-d1" target="_blank" rel="noopener">
+          <div class="project-thumb" style="background:#FFE8E0;">
+            <div class="css-laptop">
+              <div class="css-laptop-lid">
+                <div class="css-laptop-screen-wrap">
+                  <img src="assets/projects/sampah-screen.png" alt="SampahKita!">
+                </div>
+              </div>
+              <div class="css-laptop-base"></div>
+            </div>
+          </div>
+          <div class="project-meta">
+            <div>
+              <div class="project-tag-row">
+                <span class="ptag mint-bg">WEB</span>
+                <span class="ptag">UI/UX</span>
+                <span class="ptag">CIVIC</span>
+              </div>
+              <h3 class="project-name">SampahKita!</h3>
+              <p class="project-desc">
+                A civic reporting tool for community waste management. 
+                Empowering citizens to take real action through organized digital reporting.
+              </p>
+            </div>
+            <span class="project-link-hint">View case study</span>
+          </div>
+        </a>
+
+        <a href="#" class="project-item reveal reveal-d2" target="_blank" rel="noopener">
+          <div class="project-thumb" style="background:#D8F5EE;">
+            <div class="phone-wrapper">
+              <img src="assets/phone-case.png" class="phone-frame" alt="Phone Frame">
+              <img src="assets/projects/peduli-screen.png" class="phone-screen-img" alt="Peduli Kucing UI">
+            </div>
+          </div>
+          <div class="project-meta">
+            <div>
+              <div class="project-tag-row">
+                <span class="ptag violet">MOBILE</span>
+                <span class="ptag mint-bg">WEB</span>
+                <span class="ptag">UI/UX</span>
+                <span class="ptag">SOCIAL</span>
+              </div>
+              <h3 class="project-name">Peduli Kucing</h3>
+              <p class="project-desc">
+                A digital ecosystem for stray cat rescue and adoption. 
+                Connecting feline lovers with animals in need through a seamless interface.
+              </p>
+            </div>
+            <span class="project-link-hint">View case study</span>
+          </div>
+        </a>
+
+    </div>
+  </section>
+
+  <div class="px-line"></div>
+
+  <section id="playground">
+    <div class="section-wrap">
+
+      <div class="section-header reveal">
+        <div class="section-num">02 /</div>
+        <div class="section-title-wrap">
+          <h2 class="section-title">Play<em>ground</em></h2>
+          <p class="section-desc">Visual Explorations & Experiments</p>
+        </div>
+      </div>
+
+      <p class="playground-intro reveal">
+        A dedicated space for my raw creative process — where I break the rules of conventional design. 
+        Just pure visual experiments, weird ideas, and everything in between. Click any card to see description.
+      </p>
+
+      <div class="pg-scroll-track reveal">
+        <div class="pg-scroll-inner">
+      <div class="pg-item" data-title="Stylized Self" data-desc="A digital experiment in portraiture, blending personal identity with AI-driven aesthetics.">
+        <img src="assets/playground/pg-1.png" alt="Artsy Portrait"><div class="pg-label">Portrait ✦</div>
+      </div>
+      <div class="pg-item" data-title="Digital Feline" data-desc="Visual exploration inspired by a random cat from Instagram.">
+        <img src="assets/playground/pg-2.png" alt="Cute Cat Illustration"><div class="pg-label">Visual Art ✦</div>
+      </div>
+      <div class="pg-item" data-title="The Playmate" data-desc="A tribute to my nephew, capturing the pure joy and chaotic energy of play.">
+        <img src="assets/playground/pg-3.png" alt="Nephew Illustration"><div class="pg-label">Portrait ✦</div>
+      </div>
+      <div class="pg-item" data-title="Bonded by Time" data-desc="My cousin and roommate. From babies to college life in one dorm.">
+        <img src="assets/playground/pg-4.png" alt="Cousin Illustration"><div class="pg-label">Portrait ✦</div>
+      </div>
+      <div class="pg-item" data-title="Curious Stare" data-desc="Another feline exploration focusing on texture and exaggerated features.">
+        <img src="assets/playground/pg-5.png" alt="Cat Illustration 2"><div class="pg-label">Visual Art ✦</div>
+      </div>
+
+      <div class="pg-item" data-title="Stylized Self" data-desc="A digital experiment in portraiture, blending personal identity with AI-driven aesthetics."><img src="assets/playground/pg-1.png" alt="..."><div class="pg-label">Portrait ✦</div></div>
+      <div class="pg-item" data-title="Digital Feline" data-desc="Visual exploration inspired by a random cat from Instagram. Purely for the aesthetic joy."><img src="assets/playground/pg-2.png" alt="..."><div class="pg-label">Visual Art ✦</div></div>
+      <div class="pg-item" data-title="The Playmate" data-desc="A tribute to my nephew, capturing the pure joy and chaotic energy of our play sessions."><img src="assets/playground/pg-3.png" alt="..."><div class="pg-label">Portrait ✦</div></div>
+      <div class="pg-item" data-title="Bonded by Time" data-desc="My cousin and roommate. From babies to college life, bridging the 1-year gap in one dorm."><img src="assets/playground/pg-4.png" alt="..."><div class="pg-label">Portrait ✦</div></div>
+      <div class="pg-item" data-title="Curious Stare" data-desc="Another feline exploration focusing on texture and exaggerated features."><img src="assets/playground/pg-5.png" alt="..."><div class="pg-label">Visual Art ✦</div></div>
+    </div>
+  </section>
+
+  <div id="pg-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close-btn">&times;</button>
+      <div class="modal-img-wrap">
+        <img id="modal-img" src="" alt="Playground preview" />
+      </div>
+      <div class="modal-info">
+        <h3 id="modal-title" class="modal-title"></h3>
+        <p id="modal-desc" class="modal-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-line"></div>
+
+  <section id="stack">
+    <div class="section-wrap">
+
+      <div class="section-header reveal">
+        <div class="section-num" style="color:rgba(255,255,255,0.3);">03 /</div>
+        <div class="section-title-wrap">
+          <h2 class="section-title" style="color:var(--cream);">
+            My <em style="color:var(--violet-lt);">Stack</em>
+          </h2>
+          <p class="section-desc" style="color:rgba(255,255,255,0.4);">
+            Tools, toys &amp; weapons of choice
+          </p>
+        </div>
+      </div>
+
+      <div class="ticker-wrap reveal">
+        <div class="ticker-track">
+          <span class="hi">Figma</span><span>·</span><span>Framer</span><span>·</span>
+          <span class="hi">HTML/CSS</span><span>·</span><span>JavaScript</span><span>·</span>
+          <span class="hi">Python</span><span>·</span><span>Capcut</span><span>·</span>
+          <span class="hi">Claude AI</span><span>·</span><span>Cursor</span><span>·</span>
+          <span class="hi">Gemini</span><span>·</span><span>C / C++</span><span>·</span>
+          <span class="hi">Figma</span><span>·</span><span>Framer</span><span>·</span>
+          <span class="hi">HTML/CSS</span><span>·</span><span>JavaScript</span><span>·</span>
+          <span class="hi">Python</span><span>·</span><span>Capcut</span><span>·</span>
+          <span class="hi">Claude AI</span><span>·</span><span>Cursor</span><span>·</span>
+          <span class="hi">Gemini</span><span>·</span><span>C / C++</span><span>·</span>
+        </div>
+      </div>
+
+      <div class="stack-grid reveal">
+
+        <div class="stack-block sb-coding glow-mint">
+          <div class="stack-block-label">
+            <span class="sb-dot" style="background:var(--mint);"></span>
+            Coding
+          </div>
+          <div class="stack-pills">
+            <span class="pill">C</span>
+            <span class="pill">C++</span>
+            <span class="pill">Python</span>
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">JS</span>
+          </div>
+        </div>
+
+        <div class="stack-block sb-design glow-violet">
+          <div class="stack-block-label">
+            <span class="sb-dot" style="background:var(--violet-lt);"></span>
+            Design &amp; Motion
+          </div>
+          <div class="stack-pills">
+            <span class="pill">Figma</span>
+            <span class="pill">Framer</span>
+            <span class="pill">Capcut</span>
+          </div>
+        </div>
+
+        <div class="stack-block sb-ai glow-cyan">
+          <div class="stack-block-label">
+            <span class="sb-dot" style="background:#00E5FF;"></span>
+            AI Assistants
+          </div>
+          <div class="stack-pills">
+            <span class="pill">Gemini</span>
+            <span class="pill">Claude</span>
+            <span class="pill">Cursor</span>
+            <span class="pill">Antigravity</span>
+          </div>
+        </div>
+
+      </div></div>
+  </section>
+
+  <div class="px-line"></div>
+
+  <section id="contact">
+    <div class="section-wrap">
+
+      <div class="section-header reveal">
+        <div class="section-num">04 /</div>
+        <div class="section-title-wrap">
+          <h2 class="section-title">Let's <em>Connect</em></h2>
+          <p class="section-desc">Open to work, collabs, or just vibes</p>
+        </div>
+      </div>
+
+      <p class="contact-big reveal">
+        Got an idea?
+        <em>Let's build it.</em>
+      </p>
+
+      <div class="contact-row reveal">
+        <a href="mailto:rappepu@gmail.com" class="contact-btn glow-btn">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+          Mail me
+        </a>
+        <a href="https://linkedin.com/in/raffami" target="_blank" rel="noopener" class="contact-btn glow-btn">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="javascript:void(0)" class="contact-btn glow-btn" id="ig-trigger">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/>
+          </svg>
+          Instagram
+        </a>
+
+        <div class="ig-modal" id="ig-modal">
+          <div class="ig-modal-content reveal">
+            <h3>Choose Destination</h3>
+            <div class="ig-options">
+              <a href="https://instagram.com/piipapoy" target="_blank" class="ig-card">
+                <span class="ig-handle">@piipapoy</span>
+                <span class="ig-type">Personal & Lifestyle</span>
+              </a>
+              <a href="https://instagram.com/rakinema" target="_blank" class="ig-card">
+                <span class="ig-handle">@rakinema</span>
+                <span class="ig-type">Cinematography & Video</span>
+              </a>
+            </div>
+            <button class="ig-close" id="ig-close">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bar reveal">
+        <span class="footer-sig">Handmade with &lt;3 — Arap</span>
+        <span class="footer-mono">
+          <div class="footer-dot"></div>
+          Bandung · UPI CS '24 · 2026
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
