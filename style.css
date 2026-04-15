@@ -867,13 +867,14 @@ nav {
   inset: 0;
   background: rgba(21, 20, 18, 0.85);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 99999;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .ig-modal.active {
@@ -883,41 +884,48 @@ nav {
 
 .ig-modal-content {
   background: var(--white);
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   border-radius: 24px;
   width: 90%;
   max-width: 400px;
   text-align: center;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 4px solid var(--ink); /* Added thick border for design continuity */
+  box-shadow: 20px 20px 0 var(--violet);
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ig-modal.active .ig-modal-content {
+  transform: scale(1);
 }
 
 .ig-options {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin: 1.5rem 0;
+  gap: 10px;
+  margin-bottom: 1.5rem;
 }
 
 .ig-card {
-  padding: 1rem;
+  padding: 1.2rem;
   background: var(--cream);
-  border-radius: 12px;
+  border: 2px solid var(--ink);
   text-decoration: none;
   color: var(--ink);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
-  border: 1px solid transparent;
+  align-items: center;
 }
 
 .ig-card:hover {
-  background: var(--white);
-  border-color: var(--violet);
-  transform: translateY(-3px);
+  background: var(--violet-lt);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
 }
 
-.ig-handle { font-family: var(--mono); font-weight: 700; font-size: 1.1rem; }
-.ig-type { font-size: 0.8rem; color: var(--ink-soft); }
+.ig-handle { font-family: var(--mono); font-weight: 700; font-size: 1rem; }
+.ig-type { font-size: 0.75rem; color: var(--ink-soft); font-family: var(--sans); }
 
 .ig-close {
   background: none;
@@ -928,7 +936,10 @@ nav {
   color: var(--ink-soft);
   font-size: 0.7rem;
   letter-spacing: 2px;
+  font-weight: 700;
 }
+
+.ig-close:hover { color: var(--ink); }
 
 /* Container Judul & Tabs */
 .title-row {
@@ -1061,4 +1072,354 @@ nav {
 
   .stack-grid { grid-template-columns: 1fr; }
   .sb-coding, .sb-design, .sb-ai { grid-column: span 1; grid-row: span 1; }
+}
+
+/* ============================================
+   PROJECT DETAIL - DARK HORIZONTAL SHOWCASE
+   ============================================ */
+
+/* The outer section wrapper */
+.showcase-dark {
+  background: var(--ink);
+  padding: 6rem 0; /* Full bleed layout overrides standard wrap padding */
+  position: relative;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* The scrolling track container */
+.showcase-track {
+  display: flex;
+  gap: 2rem;
+  padding: 0 6vw 2rem 6vw; /* Aligns visually with the section-wrap padding */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* Momentum scrolling on iOS */
+  
+  /* Hide Scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.showcase-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Individual Showcase Card */
+.showcase-card {
+  flex: 0 0 85%; /* Mobile: takes up 85% of screen to show next card peek */
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: center; /* Snaps to the middle on mobile */
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+  cursor: grab;
+}
+
+.showcase-card:active {
+  cursor: grabbing;
+}
+
+.showcase-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--violet-lt);
+}
+
+/* Image Wrapper */
+.sc-img-wrap {
+  flex-grow: 1;
+  padding: 4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+.sc-img-wrap img {
+  max-height: 400px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--ink);
+  transition: transform 0.5s ease;
+}
+
+.showcase-card:hover .sc-img-wrap img {
+  transform: scale(1.03) translateY(-5px);
+}
+
+/* Info Box inside Card */
+.sc-info {
+  padding: 2rem;
+  background: rgba(21, 20, 18, 0.5); /* Slight tint of var(--ink) */
+}
+
+.sc-info h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.02em;
+}
+
+.sc-info p {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Buffer to give space after the last card */
+.showcase-buffer {
+  flex: 0 0 1px;
+}
+
+/* Desktop sizing adjustments */
+@media (min-width: 768px) {
+  .showcase-card {
+    flex: 0 0 45%; /* Shrink width so 2 cards fit easily, peeking a 3rd */
+    scroll-snap-align: start; /* Aligns smoothly to the left side */
+  }
+  
+  .showcase-buffer {
+    flex: 0 0 6vw; /* Empty space at the end of the scroll track */
+  }
+}
+
+@media (min-width: 1200px) {
+  .showcase-card {
+    flex: 0 0 35%; /* Even wider screens get more cards visible */
+  }
+}
+
+/* ============================================
+   PROJECT DETAIL - KINETIC MARQUEE SHOWCASE
+   ============================================ */
+
+/* The outer dark section */
+.showcase-kinetic {
+  background: var(--ink);
+  padding: 6rem 0; /* Full bleed layout */
+  position: relative;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden; /* Prevent horizontal scrollbar on body */
+}
+
+/* Wrapper to hide the overflow of the massive track */
+.marquee-overflow-wrap {
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  /* Faded edges effect for a premium look */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* The moving track */
+.marquee-track {
+  display: flex;
+  padding: 50px 0;
+  width: max-content;
+  animation: scrollMarquee 35s linear infinite;
+  will-change: transform;
+}
+
+/* A set of images */
+.marquee-set {
+  display: flex;
+  gap: 4vw; /* Aesthetic spacing between images */
+  padding-right: 4vw; /* Crucial: Matches the gap so the loop is mathematically seamless */
+  align-items: center;
+}
+
+/* The raw floating images */
+.floating-ui-img {
+  height: clamp(400px, 60vh, 700px); /* Responsive fixed height */
+  width: auto;
+  object-fit: contain;
+  border-radius: 24px; /* Simulates phone screen curves */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.6s ease;
+  cursor: none; /* Keeps your custom JS cursor active */
+  border: 1px solid rgba(255,255,255,0.05); /* Very subtle rim light */
+  /* Slightly dim images by default to make the hover pop */
+  filter: brightness(0.85); 
+}
+
+/* Hover effects for the images */
+.floating-ui-img:hover {
+  transform: scale(1.08) translateY(-10px);
+  filter: brightness(1.1);
+  z-index: 10;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(128, 77, 250, 0.3); /* Adds a violet glow */
+}
+
+/* The infinite scrolling keyframe */
+@keyframes scrollMarquee {
+  0% { 
+    transform: translateX(0); 
+  }
+  100% { 
+    /* Shifts exactly the width of ONE .marquee-set (50% of the track) */
+    transform: translateX(-50%); 
+  }
+}
+
+/* Responsive tweaks for smaller screens */
+@media (max-width: 768px) {
+  .floating-ui-img {
+    height: 50vh;
+    border-radius: 16px;
+  }
+  .marquee-set {
+    gap: 8vw;
+    padding-right: 8vw;
+  }
+  .marquee-overflow-wrap {
+    mask-image: none;
+    -webkit-mask-image: none; /* Removes fade effect on mobile for edge-to-edge view */
+  }
+}
+
+/* ============================================
+   PROJECT DETAIL - FLOATING BRAND HERO
+   ============================================ */
+
+/* 2-Column Grid Layout */
+.hero-split-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* Gives text slightly more room */
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Left Column Styling */
+.hero-split-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 10;
+}
+
+.hero-brand-logo {
+  height: 64px; /* Elegant size */
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 12px rgba(128, 77, 250, 0.15)); /* Subtle pop against the cream bg */
+}
+
+.hero-body-desc {
+  font-family: var(--sans);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--ink-mid);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+}
+
+/* Right Column & Floating Animation */
+.hero-split-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.floating-mockup {
+  /* Fluid 4-second looping animation */
+  animation: floatFluid 4s ease-in-out infinite;
+  /* Add a beautiful drop shadow to the wrapper itself to ground the floating effect */
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.15)) drop-shadow(0 15px 15px rgba(128, 77, 250, 0.1));
+}
+
+@keyframes floatFluid {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+/* Hero Phone Scale Override 
+   We reuse your .phone-wrapper logic but double the size for the hero */
+.hero-phone-wrap {
+  width: 280px !important; 
+  height: 540px !important;
+}
+
+/* Scale the border radius slightly to match the bigger dimensions */
+.hero-phone-radius {
+  border-radius: 20px !important; 
+}
+
+/* Responsive Stacking */
+@media (max-width: 900px) {
+  .hero-split-layout {
+    grid-template-columns: 1fr;
+    gap: 5rem;
+  }
+  
+  .hero-split-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-body-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .project-tag-row {
+    justify-content: center;
+  }
+  
+  /* Shrink phone slightly on smaller screens */
+  .hero-phone-wrap {
+    width: 240px !important;
+    height: 462px !important;
+  }
+  .hero-phone-radius {
+    border-radius: 18px !important; 
+  }
+}
+
+/* Title: Massive, Bold, Editorial */
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(4rem, 8vw, 7rem); /* Significantly scaled up */
+  line-height: 0.92; /* Tighter line-height for huge text */
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 1.2rem; /* Tightened gap to description */
+}
+
+.hero-title em {
+  color: var(--violet);
+  font-style: italic;
+}
+
+/* Description: Tighter grouping */
+.hero-body-desc {
+  font-family: var(--sans);
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--ink-mid);
+  max-width: 580px;
+  margin-bottom: 2rem; /* Reduced margin to bring tags closer */
+}
+
+/* Ensure Tags don't have unnecessary margins */
+.hero-tags {
+  justify-content: flex-start;
+  margin-bottom: 0; 
 }
