@@ -494,6 +494,53 @@ nav {
   padding: 2rem;
 }
 
+/* --- UX LOCKED PROJECTS --- */
+.project-item.locked-project {
+  cursor: pointer; 
+}
+
+/* Base state: Kelihatan normal */
+.project-link-hint {
+  /* Typography & Colors (Bawaan awal) */
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--violet);
+  
+  /* Layout & Box Model (Gabungan) */
+  display: inline-flex; /* Pakai inline-flex biar box-nya ngepas ngebungkus teks */
+  align-items: center;
+  gap: 6px;
+  height: 24px; /* Kuncian tinggi biar gak loncat */
+  
+  /* Animasi & GPU Fixes (Tambahan baru) */
+  transition: color 0.3s ease;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.project-link-hint svg {
+  display: block;
+  flex-shrink: 0;
+  transform: translateY(-1px); /* Tweak manual posisi gemboknya di sini */
+}
+
+@keyframes shakeLock {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.project-item.shake-active .project-link-hint {
+  animation: shakeLock 0.4s ease;
+  color: #FF3B30; /* Merah */
+}
+
 /* CSS DEVICES */
 /* Container tetap sesuai width, tapi height kita batasi */
 .phone-wrapper {
@@ -612,8 +659,14 @@ nav {
 
 .project-name { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 0.8rem; }
 .project-desc { font-size: 0.95rem; line-height: 1.75; color: var(--ink-mid); flex-grow: 1; margin-bottom: 1.5rem; }
-.project-link-hint { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--violet); display: flex; align-items: center; gap: 6px; font-weight: 700; }
-.project-link-hint::before { content: ''; display: block; width: 20px; height: 2px; background: var(--violet); }
+.project-link-hint::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  flex-shrink: 0; /* Biar flexbox gak iseng ngecilin garisnya */
+}
 
 /* ============================================
    PLAYGROUND — INFINITE CSS MARQUEE
@@ -950,10 +1003,15 @@ nav {
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   border: 1px solid var(--violet);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .toast.show {
   transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Responsive: tumpuk di mobile */

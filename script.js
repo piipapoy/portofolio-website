@@ -158,3 +158,36 @@ if (comingSoonBtn && toast) {
     }, 2500);
   });
 }
+
+// Micro-interaction untuk Project yang di-lock
+const lockedProjects = document.querySelectorAll('.locked-project');
+
+lockedProjects.forEach(project => {
+  project.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    
+    const hintSpan = this.querySelector('.project-link-hint');
+    
+    // Kalau lagi animasi (udah merah), jangan di-trigger lagi
+    if (this.classList.contains('shake-active')) return;
+
+    // Simpan teks original biar bisa dibalikin
+    const originalText = "VIEW CASE STUDY";
+    
+    // Trigger animasi dan ubah warna
+    this.classList.add('shake-active');
+    
+    // Inject teks Locked + Gembok SVG
+    hintSpan.innerHTML = `LOCKED 
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>`;
+    
+    // Kembalikan ke normal setelah 1.5 detik
+    setTimeout(() => {
+      this.classList.remove('shake-active');
+      hintSpan.innerHTML = originalText;
+    }, 1500);
+  });
+});
