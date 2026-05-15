@@ -1,4 +1,78 @@
 /* ============================================
+   SELF-HOSTED FONTS
+   ============================================ */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/playfair-display-italic-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/playfair-display-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('assets/fonts/playfair-display-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-italic-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/syne.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/syne.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/syne.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('assets/fonts/syne.woff2') format('woff2');
+}
+
+/* ============================================
    ROOT TOKENS
    ============================================ */
 :root {
@@ -509,13 +583,13 @@ nav {
   font-weight: 700;
   color: var(--violet);
   
-  /* Layout & Box Model (Gabungan) */
-  display: inline-flex; /* Pakai inline-flex biar box-nya ngepas ngebungkus teks */
+  /* Layout & Box Model */
+  display: inline-flex; /* Wraps tightly around text content */
   align-items: center;
   gap: 6px;
-  height: 24px; /* Kuncian tinggi biar gak loncat */
+  height: 24px; /* Fixed height to prevent layout shift */
   
-  /* Animasi & GPU Fixes (Tambahan baru) */
+  /* Animation & GPU Acceleration */
   transition: color 0.3s ease;
   transform: translateZ(0);
   backface-visibility: hidden;
@@ -542,48 +616,48 @@ nav {
 }
 
 /* CSS DEVICES */
-/* Container tetap sesuai width, tapi height kita batasi */
+/* Phone container with constrained height */
 .phone-wrapper {
   position: relative;
   width: 140px; 
-  height: 270px; /* <--- Set tinggi eksplisit untuk memendekkan total wrapper */
+  height: 270px; /* Explicit height to shorten the wrapper */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Frame HP dipaksa mengikuti tinggi wrapper agar agak memendek */
+/* Phone frame forced to follow wrapper height */
 .phone-frame {
   width: 100%;
-  height: 100%; /* <--- Paksa ikut tinggi wrapper (efek memendek) */
-  object-fit: fill; /* <--- Memungkinkan sedikit distorsi agar pas sesuai keinginanmu */
+  height: 100%; /* Force to match wrapper height */
+  object-fit: fill; /* Allows slight distortion for a snug fit */
   position: relative;
   z-index: 2;
   pointer-events: none;
 }
 
-/* Sesuaikan posisi gambar di dalamnya agar tetap menutup layar */
+/* Position screen image to fully cover the display area */
 .phone-screen-img {
   position: absolute;
-  top: 2.5%;    /* Turun dikit biar sisa bolong di atas ketutup */
+  top: 2.5%;    /* Offset to cover the top gap */
   width: 89%;   
-  height: 96%;  /* Naik dari 94% ke 96% untuk efek stretch panjang ke bawah */
+  height: 96%;  /* Stretched to cover bottom edge */
   object-fit: cover;
   z-index: 1;
   border-radius: 12px;
 }
 
-/* Container Laptop Ramping */
+/* Slim Laptop Container */
 .css-laptop { 
-  width: 280px; /* Diperkecil dari 320px agar lebih ramping/tipis */
+  width: 280px; /* Reduced from 320px for a slimmer look */
   display: flex; 
   flex-direction: column; 
   align-items: center; 
   position: relative;
-  padding-bottom: 12px; /* Ruang untuk keyboard base */
+  padding-bottom: 12px; /* Space for keyboard base */
 }
 
-/* Layar (Lid) */
+/* Screen (Lid) */
 .css-laptop-lid { 
   width: 100%; 
   border: 3.5px solid var(--ink); 
@@ -612,17 +686,17 @@ nav {
 
 /* Base Keyboard (Body Laptop) */
 .css-laptop-base { 
-  width: 104%; /* Sedikit lebih lebar dari layar untuk efek nyata */
+  width: 104%; /* Slightly wider than screen for realistic effect */
   height: 8px; 
-  background: var(--cream-dk); /* Warna body laptop */
+  background: var(--cream-dk); /* Laptop body color */
   border: 3.5px solid var(--ink);
   border-radius: 0 0 6px 6px; 
   position: relative;
   z-index: 3;
-  margin-top: -2px; /* Menempel ke lid */
+  margin-top: -2px; /* Flush against the lid */
 }
 
-/* Keyboard / Ketebalan Laptop (Bagian yang bikin kek laptop beneran) */
+/* Keyboard shadow (adds realistic depth) */
 .css-laptop-base::after { 
   content: ''; 
   position: absolute; 
@@ -632,11 +706,11 @@ nav {
   width: 90%; 
   height: 4px; 
   background: var(--ink); 
-  opacity: 0.15; /* Bayangan tipis di bawah keyboard */
+  opacity: 0.15; /* Subtle shadow below keyboard */
   border-radius: 0 0 100px 100px;
 }
 
-/* Notch / Cekungan Jari untuk buka laptop */
+/* Finger notch for opening the laptop */
 .css-laptop-base::before {
   content: '';
   position: absolute;
@@ -665,7 +739,7 @@ nav {
   width: 20px;
   height: 2px;
   background: currentColor;
-  flex-shrink: 0; /* Biar flexbox gak iseng ngecilin garisnya */
+  flex-shrink: 0; /* Prevent flexbox from shrinking the line */
 }
 
 /* ============================================
@@ -686,8 +760,8 @@ nav {
 /* Inner container holds items and animates continuously */
 .pg-scroll-inner {
   display: flex;
-  width: max-content; /* Biarkan melebar sesuai jumlah 10 kartu */
-  animation: scrollPlayground 45s linear infinite; /* 45s agar lebih smooth untuk 10 kartu */
+  width: max-content; /* Expand to fit all 10 cards */
+  animation: scrollPlayground 45s linear infinite; /* 45s for smoother scrolling with 10 cards */
 }
 
 /* Pause scroll solely when hovering over the track */
@@ -698,7 +772,7 @@ nav {
 /* Since gap is removed and margin-right is used, shifting by exactly 50% guarantees a gap-free loop */
 @keyframes scrollPlayground {
   0% { transform: translateX(0); }
-  /* Geser tepat setengah dari total lebar 10 kartu */
+  /* Shift exactly half of the total width of 10 cards */
   100% { transform: translateX(-50%); } 
 }
 
@@ -941,21 +1015,21 @@ nav {
 
 .ig-close:hover { color: var(--ink); }
 
-/* Container Judul & Tabs */
+/* Title & Tabs Container */
 .title-row {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end; /* Sejajar dengan baseline judul */
+  align-items: flex-end; /* Align with title baseline */
   width: 100%;
 }
 
 .project-tabs {
   display: flex;
   gap: 12px;
-  margin-bottom: 8px; /* Tweak biar sejajar pas sama baseline teks raksasanya */
+  margin-bottom: 8px; /* Align with the giant title baseline */
 }
 
-/* Base Style Tombol Tab */
+/* Base Tab Button Style */
 .tab-btn {
   background: transparent;
   border: 2px solid var(--ink);
@@ -965,36 +1039,26 @@ nav {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  cursor: none; /* Tetap pake custom cursor kamu */
+  cursor: none; /* Use custom cursor */
   transition: all 0.2s;
 }
 
-/* Tab Aktif */
+/* Active Tab */
 .tab-btn.active {
   background: var(--ink);
   color: var(--cream);
   box-shadow: 4px 4px 0 var(--violet);
 }
 
-/* Tab Disabled / Coming Soon */
-.tab-btn.disabled {
-  opacity: 0.4;
-  border-style: dashed;
-  cursor: not-allowed;
-}
 
-.tab-btn.disabled:hover {
-  background: rgba(21, 17, 16, 0.05);
-}
-
-/* Update tombol */
+/* Coming Soon Tab */
 .tab-btn.coming-soon {
   opacity: 0.6;
   border-style: dashed;
 }
 
 .tab-btn.coming-soon:hover {
-  background: rgba(128, 77, 250, 0.1); /* pake warna violet tipis */
+  background: rgba(128, 77, 250, 0.1); /* Subtle violet tint */
   border-style: solid;
 }
 
@@ -1025,7 +1089,7 @@ nav {
   visibility: visible;
 }
 
-/* Responsive: tumpuk di mobile */
+/* Responsive: stack vertically on mobile */
 @media (max-width: 768px) {
   .title-row {
     flex-direction: column;
@@ -1074,128 +1138,6 @@ nav {
   .sb-coding, .sb-design, .sb-ai { grid-column: span 1; grid-row: span 1; }
 }
 
-/* ============================================
-   PROJECT DETAIL - DARK HORIZONTAL SHOWCASE
-   ============================================ */
-
-/* The outer section wrapper */
-.showcase-dark {
-  background: var(--ink);
-  padding: 6rem 0; /* Full bleed layout overrides standard wrap padding */
-  position: relative;
-  border-top: 2px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-/* The scrolling track container */
-.showcase-track {
-  display: flex;
-  gap: 2rem;
-  padding: 0 6vw 2rem 6vw; /* Aligns visually with the section-wrap padding */
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; /* Momentum scrolling on iOS */
-  
-  /* Hide Scrollbar */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
-}
-.showcase-track::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
-}
-
-/* Individual Showcase Card */
-.showcase-card {
-  flex: 0 0 85%; /* Mobile: takes up 85% of screen to show next card peek */
-  display: flex;
-  flex-direction: column;
-  scroll-snap-align: center; /* Snaps to the middle on mobile */
-  background: rgba(255, 255, 255, 0.02);
-  border: 2px solid rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
-  cursor: grab;
-}
-
-.showcase-card:active {
-  cursor: grabbing;
-}
-
-.showcase-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--violet-lt);
-}
-
-/* Image Wrapper */
-.sc-img-wrap {
-  flex-grow: 1;
-  padding: 4rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  position: relative;
-}
-
-.sc-img-wrap img {
-  max-height: 400px;
-  width: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  border: 2px solid var(--ink);
-  transition: transform 0.5s ease;
-}
-
-.showcase-card:hover .sc-img-wrap img {
-  transform: scale(1.03) translateY(-5px);
-}
-
-/* Info Box inside Card */
-.sc-info {
-  padding: 2rem;
-  background: rgba(21, 20, 18, 0.5); /* Slight tint of var(--ink) */
-}
-
-.sc-info h3 {
-  font-family: var(--serif);
-  font-size: 1.5rem;
-  color: var(--white);
-  margin-bottom: 0.8rem;
-  letter-spacing: -0.02em;
-}
-
-.sc-info p {
-  font-family: var(--sans);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* Buffer to give space after the last card */
-.showcase-buffer {
-  flex: 0 0 1px;
-}
-
-/* Desktop sizing adjustments */
-@media (min-width: 768px) {
-  .showcase-card {
-    flex: 0 0 45%; /* Shrink width so 2 cards fit easily, peeking a 3rd */
-    scroll-snap-align: start; /* Aligns smoothly to the left side */
-  }
-  
-  .showcase-buffer {
-    flex: 0 0 6vw; /* Empty space at the end of the scroll track */
-  }
-}
-
-@media (min-width: 1200px) {
-  .showcase-card {
-    flex: 0 0 35%; /* Even wider screens get more cards visible */
-  }
-}
 
 /* ============================================
    PROJECT DETAIL - KINETIC MARQUEE SHOWCASE
@@ -1307,23 +1249,6 @@ nav {
   z-index: 10;
 }
 
-.hero-brand-logo {
-  height: 64px; /* Elegant size */
-  width: auto;
-  object-fit: contain;
-  margin-bottom: 1.5rem;
-  filter: drop-shadow(0 4px 12px rgba(128, 77, 250, 0.15)); /* Subtle pop against the cream bg */
-}
-
-.hero-body-desc {
-  font-family: var(--sans);
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
-  font-weight: 500;
-  line-height: 1.7;
-  color: var(--ink-mid);
-  max-width: 600px;
-  margin-bottom: 2.5rem;
-}
 
 /* Right Column & Floating Animation */
 .hero-split-visual {

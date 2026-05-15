@@ -1,5 +1,5 @@
 /* ============================================
-   script.js — Arap Portfolio Refactored
+   script.js — Arap Portfolio
    ============================================ */
 
 (function () {
@@ -53,8 +53,8 @@
     });
   }, 80);
 
-/* ------------------------------------------
-     3. PLAYGROUND MODAL (Safer version)
+  /* ------------------------------------------
+     3. PLAYGROUND MODAL
   ------------------------------------------ */
   const modal = document.getElementById('pg-modal');
   const modalImg = document.getElementById('modal-img');
@@ -63,7 +63,7 @@
   const closeBtn = document.getElementById('modal-close');
   const pgItems = document.querySelectorAll('.pg-item');
 
-  // Only run this logic if the modal elements actually exist on the current page
+  // Only run if modal elements exist on the current page
   if (modal && closeBtn) {
     pgItems.forEach(item => {
       item.addEventListener('click', () => {
@@ -123,82 +123,88 @@
 
   sections.forEach((s) => sectionObserver.observe(s));
 
+  /* ------------------------------------------
+     5. INSTAGRAM MODAL
+  ------------------------------------------ */
+  const igTrigger = document.getElementById('ig-trigger');
+  const igModal = document.getElementById('ig-modal');
+  const igClose = document.getElementById('ig-close');
+
+  if (igTrigger) {
+    igTrigger.addEventListener('click', () => igModal.classList.add('active'));
+    igClose.addEventListener('click', () => igModal.classList.remove('active'));
+    
+    // Close on outside click
+    igModal.addEventListener('click', (e) => {
+      if (e.target === igModal) igModal.classList.remove('active');
+    });
+  }
+
+  /* ------------------------------------------
+     6. COMING SOON TOAST
+  ------------------------------------------ */
+  const comingSoonBtn = document.querySelector('.tab-btn.coming-soon');
+  const toast = document.getElementById('toast');
+
+  if (comingSoonBtn && toast) {
+    comingSoonBtn.addEventListener('click', () => {
+      toast.classList.add('show');
+      
+      // Hide after 2.5 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    });
+  }
+
+  /* ------------------------------------------
+     7. LOCKED PROJECT MICRO-INTERACTION
+  ------------------------------------------ */
+  const lockedProjects = document.querySelectorAll('.locked-project');
+
+  lockedProjects.forEach(project => {
+    project.addEventListener('click', function(e) {
+      e.preventDefault(); 
+      
+      const hintSpan = this.querySelector('.project-link-hint');
+      if (this.classList.contains('shake-active')) return;
+
+      const originalText = "VIEW CASE STUDY";
+      this.classList.add('shake-active');
+      
+      hintSpan.innerHTML = `LOCKED 
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>`;
+      
+      setTimeout(() => {
+        this.classList.remove('shake-active');
+        hintSpan.innerHTML = originalText;
+      }, 1500);
+    });
+  });
+
+  /* ------------------------------------------
+     8. COLLABORATE MODAL (Detail Page)
+  ------------------------------------------ */
+  const collabBtn = document.getElementById('collab-trigger');
+  const contactModal = document.getElementById('contact-modal');
+  const contactClose = document.getElementById('contact-close');
+
+  if (collabBtn) {
+    collabBtn.addEventListener('click', () => contactModal.classList.add('active'));
+    contactClose.addEventListener('click', () => contactModal.classList.remove('active'));
+    
+    // Close on outside click
+    contactModal.addEventListener('click', (e) => {
+      if (e.target === contactModal) contactModal.classList.remove('active');
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') contactModal.classList.remove('active');
+    });
+  }
+
 })();
-
-const igTrigger = document.getElementById('ig-trigger');
-const igModal = document.getElementById('ig-modal');
-const igClose = document.getElementById('ig-close');
-
-if (igTrigger) {
-  igTrigger.addEventListener('click', () => igModal.classList.add('active'));
-  igClose.addEventListener('click', () => igModal.classList.remove('active'));
-  
-  // Klik di luar modal buat nutup
-  igModal.addEventListener('click', (e) => {
-    if (e.target === igModal) igModal.classList.remove('active');
-  });
-}
-
-// Tambahkan di dalam file script.js kamu
-const comingSoonBtn = document.querySelector('.tab-btn.coming-soon');
-const toast = document.getElementById('toast');
-
-if (comingSoonBtn && toast) {
-  comingSoonBtn.addEventListener('click', () => {
-    toast.classList.add('show');
-    
-    // Ilangin lagi setelah 2.5 detik
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 2500);
-  });
-}
-
-/* ------------------------------------------
-   Micro-interaction untuk Project yang di-lock
------------------------------------------- */
-const lockedProjects = document.querySelectorAll('.locked-project');
-
-lockedProjects.forEach(project => {
-  project.addEventListener('click', function(e) {
-    // This code only runs for elements with the .locked-project class.
-    // Since we removed that class from Ma'rifah, this block is bypassed.
-    e.preventDefault(); 
-    
-    const hintSpan = this.querySelector('.project-link-hint');
-    if (this.classList.contains('shake-active')) return;
-
-    const originalText = "VIEW CASE STUDY";
-    this.classList.add('shake-active');
-    
-    hintSpan.innerHTML = `LOCKED 
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-      </svg>`;
-    
-    setTimeout(() => {
-      this.classList.remove('shake-active');
-      hintSpan.innerHTML = originalText;
-    }, 1500);
-  });
-});
-
-const collabBtn = document.getElementById('collab-trigger');
-const contactModal = document.getElementById('contact-modal');
-const contactClose = document.getElementById('contact-close');
-
-if (collabBtn) {
-  collabBtn.addEventListener('click', () => contactModal.classList.add('active'));
-  contactClose.addEventListener('click', () => contactModal.classList.remove('active'));
-  
-  // Close on outside click
-  contactModal.addEventListener('click', (e) => {
-    if (e.target === contactModal) contactModal.classList.remove('active');
-  });
-  
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') contactModal.classList.remove('active');
-  });
-}
