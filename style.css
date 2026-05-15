@@ -915,7 +915,7 @@ nav {
    ============================================ */
 #contact { background: var(--cream); }
 .contact-big { font-family: var(--serif); font-size: clamp(2.5rem, 8vw, 6.5rem); font-weight: 900; letter-spacing: -0.05em; line-height: 0.92; color: var(--ink); margin-bottom: 2.5rem; }
-.contact-big em { font-style: italic; color: var(--violet); display: block; text-shadow: 0 4px 15px rgba(128,77,250,0.2); }
+.contact-big em { font-style: italic; color: var(--violet); display: block; }
 
 .contact-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 3rem; }
 
