@@ -6,11 +6,12 @@
   'use strict';
 
   /* ------------------------------------------
-     1. CUSTOM CURSOR
+     1. CUSTOM CURSOR (desktop/mouse only)
   ------------------------------------------ */
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
   const cursor = document.getElementById('cursor');
 
-  if (cursor) {
+  if (cursor && !isTouchDevice) {
     document.addEventListener('mousemove', (e) => {
       cursor.style.left = e.clientX + 'px';
       cursor.style.top  = e.clientY + 'px';
@@ -24,6 +25,27 @@
       });
       el.addEventListener('mouseleave', () => {
         cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+    });
+  }
+
+  /* ------------------------------------------
+     1b. HAMBURGER MENU (mobile)
+  ------------------------------------------ */
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinksList = document.querySelector('.nav-links');
+
+  if (hamburger && navLinksList) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinksList.classList.toggle('open');
+    });
+
+    // Close menu when a nav link is tapped
+    navLinksList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinksList.classList.remove('open');
       });
     });
   }
@@ -100,14 +122,14 @@
      4. NAV ACTIVE STATE ON SCROLL
   ------------------------------------------ */
   const sections = document.querySelectorAll('section[id], div[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  const navAnchors = document.querySelectorAll('.nav-links a');
 
   const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute('id');
-          navLinks.forEach((link) => {
+          navAnchors.forEach((link) => {
             link.style.color = '';
             link.style.textShadow = '';
             if (link.getAttribute('href') === '#' + id) {
