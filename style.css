@@ -1579,6 +1579,23 @@ nav {
     font-size: 0.5rem;
     padding: 3px 7px;
   }
+  /* Manual scroll instead of CSS animation */
+  .pg-scroll-track {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .pg-scroll-track::-webkit-scrollbar {
+    display: none;
+  }
+  .pg-scroll-inner {
+    animation: none;
+  }
+  /* Remove playground modal shadow */
+  .modal-content {
+    box-shadow: none;
+  }
 }
 
 /* Toast fix — compact, above thumb area, not overlapping tabs */

@@ -229,4 +229,67 @@
     });
   }
 
+  /* ------------------------------------------
+     9. PLAYGROUND AUTO-SCROLL (mobile touch-friendly)
+  ------------------------------------------ */
+  const pgTrack = document.querySelector('.pg-scroll-track');
+  const pgInner = document.querySelector('.pg-scroll-inner');
+
+  if (pgTrack && pgInner && isTouchDevice) {
+    const BASE = 1;
+    let boost = 0;
+    let lastPos = 0;
+    let lastTime = 0;
+
+    const tick = () => {
+      boost *= 0.97;
+      if (boost < 0.05) boost = 0;
+      pgTrack.scrollLeft += BASE + boost;
+      const setWidth = pgInner.scrollWidth / 2;
+      if (pgTrack.scrollLeft >= setWidth) {
+        pgTrack.scrollLeft -= setWidth;
+      }
+    };
+
+    let idleTimeout;
+    let running = true;
+
+    const start = () => {
+      stop();
+      running = true;
+      (function loop() {
+        if (!running) return;
+        tick();
+        requestAnimationFrame(loop);
+      })();
+    };
+
+    const stop = () => { running = false; };
+
+    pgTrack.addEventListener('touchstart', () => {
+      stop();
+      clearTimeout(idleTimeout);
+      lastPos = pgTrack.scrollLeft;
+      lastTime = performance.now();
+    });
+
+    pgTrack.addEventListener('touchmove', () => {
+      const now = performance.now();
+      const dt = now - lastTime;
+      if (dt > 30) {
+        const dx = Math.abs(pgTrack.scrollLeft - lastPos);
+        boost = Math.min(boost + dx * 0.08, 8);
+        lastPos = pgTrack.scrollLeft;
+        lastTime = now;
+      }
+    });
+
+    pgTrack.addEventListener('touchend', () => {
+      clearTimeout(idleTimeout);
+      idleTimeout = setTimeout(start, 1500);
+    });
+
+    start();
+  }
+
 })();
